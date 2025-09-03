@@ -21,11 +21,11 @@ int main() {
 
     // Entrada de dados - Carta 1
     printf("Carta 1:\n");
-    printf("Digite o Estado (letra de A a H): ");
+    printf("Digite o Estado (letra de A a H):");
     scanf(" %c", &estado1);
 
     printf("Digite o Código da Carta (ex: A01): ");
-    scanf("%s", codigo1);
+    scanf(" %s", codigo1);
 
     printf("Digite o Nome da Cidade: ");
     scanf(" %[^\n]", nome_cidade1);
