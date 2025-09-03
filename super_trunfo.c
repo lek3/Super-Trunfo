@@ -21,11 +21,13 @@ int main() {
 
     // Entrada de dados - Carta 1
     printf("Carta 1:\n");
-    printf("Digite o Estado (letra de A a H):");
+    printf("Digite o Estado (letra de A a H): ");
     scanf(" %c", &estado1);
 
-    printf("Digite o Código da Carta (ex: A01): ");
-    scanf(" %s", codigo1);
+    printf("Digite o Código da Carta (ex: A01): \n");
+    scanf("%s", codigo1);
+    getchar(); // limpa o \n do buffera
+    
 
     printf("Digite o Nome da Cidade: ");
     scanf(" %[^\n]", nome_cidade1);
@@ -49,6 +51,7 @@ int main() {
 
     printf("Digite o Código da Carta (ex: B03): ");
     scanf("%s", codigo2);
+    getchar(); // limpa o \n do buffer
 
     printf("Digite o Nome da Cidade: ");
     scanf(" %[^\n]", nome_cidade2);
