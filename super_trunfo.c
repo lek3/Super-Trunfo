@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <string.h> // Para strcspn
 
 int main() {
-    setbuf(stdout, NULL); // Garante que printf apareça imediatamente
-
     // Dados da Carta 1
     char estado1;
     char codigo1[4];
@@ -28,12 +25,11 @@ int main() {
     scanf(" %c", &estado1);
 
     printf("Digite o Código da Carta (ex: A01): ");
-    scanf("%s", codigo1);
-    getchar(); // Remove o \n deixado por scanf acima
+    scanf("%3s", codigo1);  // limite 3 caracteres para evitar overflow
+    getchar(); // Limpa o \n do buffer
 
     printf("Digite o Nome da Cidade: ");
-    fgets(nome_cidade1, sizeof(nome_cidade1), stdin);
-    nome_cidade1[strcspn(nome_cidade1, "\n")] = 0;
+    scanf(" %[^\n]", nome_cidade1);
 
     printf("Digite a População: ");
     scanf("%lu", &populacao1);
@@ -49,7 +45,7 @@ int main() {
 
     // Cálculos - Carta 1
     densidade1 = populacao1 / area1;
-    pib_per_capita1 = (pib1 * 1e9) / populacao1;
+    pib_per_capita1 = (pib1 * 1e9) / populacao1; // Convertendo bilhões para reais
     super_poder1 = (float)populacao1 + area1 + (pib1 * 1e9) + pontos_turisticos1 + pib_per_capita1 + (1.0f / densidade1);
 
     // Entrada de dados - Carta 2
@@ -58,12 +54,11 @@ int main() {
     scanf(" %c", &estado2);
 
     printf("Digite o Código da Carta (ex: B03): ");
-    scanf("%s", codigo2);
-    getchar(); // Remove o \n deixado por scanf acima
+    scanf("%3s", codigo2);
+    getchar(); // Limpa o \n do buffer
 
     printf("Digite o Nome da Cidade: ");
-    fgets(nome_cidade2, sizeof(nome_cidade2), stdin);
-    nome_cidade2[strcspn(nome_cidade2, "\n")] = 0;
+    scanf(" %[^\n]", nome_cidade2);
 
     printf("Digite a População: ");
     scanf("%lu", &populacao2);
@@ -79,7 +74,7 @@ int main() {
 
     // Cálculos - Carta 2
     densidade2 = populacao2 / area2;
-    pib_per_capita2 = (pib2 * 1e9) / populacao2;
+    pib_per_capita2 = (pib2 * 1e9) / populacao2; // Convertendo bilhões para reais
     super_poder2 = (float)populacao2 + area2 + (pib2 * 1e9) + pontos_turisticos2 + pib_per_capita2 + (1.0f / densidade2);
 
     // Impressão dos dados - Carta 1
@@ -114,7 +109,7 @@ int main() {
     printf("Área: Carta 1 venceu (%d)\n", area1 > area2);
     printf("PIB: Carta 1 venceu (%d)\n", pib1 > pib2);
     printf("Pontos Turísticos: Carta 1 venceu (%d)\n", pontos_turisticos1 > pontos_turisticos2);
-    printf("Densidade Populacional: Carta 1 venceu (%d)\n", densidade1 < densidade2); // Menor vence
+    printf("Densidade Populacional: Carta 1 venceu (%d)\n", densidade1 < densidade2); // menor vence
     printf("PIB per Capita: Carta 1 venceu (%d)\n", pib_per_capita1 > pib_per_capita2);
     printf("Super Poder: Carta 1 venceu (%d)\n", super_poder1 > super_poder2);
 
